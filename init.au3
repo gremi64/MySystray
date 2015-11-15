@@ -89,6 +89,8 @@ Func createTrayMenu()
 	; Renomme le bouton "Quitter"
 	TrayItemSetText($TRAY_ITEM_EXIT, "Quitter")
 
+	TraySetIcon(@ScriptDir & "\favicon.ico")
+
 	TraySetToolTip($title)
 
 	While 1
