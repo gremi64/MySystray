@@ -28,21 +28,6 @@ HotKeySet("^+3", "lower_case")
 
 init()
 
-Func fonction1()
-	Return _myIniRead($section3,$cle3)  & "---------------------------------------------------------------------------" & @CRLF & _
-			_myIniRead($section3,$cle3) & " Description : " & @CRLF & _
-			_myIniRead($section3,$cle3) & " " & @CRLF & _
-			_myIniRead($section3,$cle3) & " Paramètres  :" & @CRLF & _
-			_myIniRead($section3,$cle3) & " En entrée : Aucun" & @CRLF & _
-			_myIniRead($section3,$cle3) & " En sortie : Aucun" & @CRLF & _
-			_myIniRead($section3,$cle3) & " Variables globales utilisées :" & @CRLF & _
-			_myIniRead($section3,$cle3) & " En lecture  : Aucune" & @CRLF & _
-			_myIniRead($section3,$cle3) & " En écriture : Aucune" & @CRLF & _
-			_myIniRead($section3,$cle3) & "---------------------------------------------------------------------------" & @CRLF & _
-			_myIniRead($section3,$cle3) & " Variables locales"
-
-EndFunc
-
 Func _myMessage($texte)
 	TrayTip($title, $texte, 10, 1)
 EndFunc

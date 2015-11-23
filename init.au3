@@ -65,21 +65,21 @@ EndFunc
 ; Création du menu et affichage dans la barre des taches
 Func createTrayMenu()
 
-	; Les actions
-	Local $idAction1 = TrayCreateItem("Action 1 - MsgBox")
-	Local $idAction2 = TrayCreateItem("Action 2 - TrayTip")
+	; Action 1
+	Local $idAction1 = TrayCreateItem("Action 1 - Bienvenue")
+
+	TrayCreateItem("") ; Créé une ligne de séparation.
 
 	; Menu 1
-	TrayCreateItem("") ; Créé une ligne de séparation.
-	Local $idMenu1 = TrayCreateMenu("Menu 1")
-	Local $idM1Action1 = TrayCreateItem("Action 1 dans le Menu 1 - ClipPut", $idMenu1)
-	Local $idM1Action2 = TrayCreateItem("Action 2 dans le Menu 1 - Modif S3Cle3", $idMenu1)
-	Local $idM1Action3 = TrayCreateItem("Action 3 dans le Menu 1 - TrayTip", $idMenu1)
+	Local $idMenu1 = TrayCreateMenu("Exemples Basiques")
+	Local $idM1Action1 = TrayCreateItem("Action 1 dans le Menu 1 - Hello World", $idMenu1)
+	Local $idM1Action2 = TrayCreateItem("Action 2 dans le Menu 1 - Hello World ++", $idMenu1)
+	Local $idM1Action3 = TrayCreateItem("Action 3 dans le Menu 1 - Hello World ++++", $idMenu1)
 
 	; Menu 2
-	Local $idMenu2 = TrayCreateMenu("Menu 2")
-	Local $idM2Action1 = TrayCreateItem("Action 1 dans le Menu 1", $idMenu2)
-	Local $idM2Action2 = TrayCreateItem("Action 2 dans le Menu 1", $idMenu2)
+	Local $idMenu2 = TrayCreateMenu("Exemples Avancés")
+	Local $idM2Action1 = TrayCreateItem("Action 1 dans le Menu 1 - Redimensionnement", $idMenu2)
+	Local $idM2Action2 = TrayCreateItem("Action 2 dans le Menu 1 - Nouvelle IA (Apogee)", $idMenu2)
 
 	; Affiche l'icone dans la barre des taches.
 	TraySetState($TRAY_ICONSTATE_SHOW)
@@ -89,34 +89,36 @@ Func createTrayMenu()
 	; Renomme le bouton "Quitter"
 	TrayItemSetText($TRAY_ITEM_EXIT, "Quitter")
 
-	TraySetIcon(@ScriptDir & "\favicon.ico")
+;~ 	TraySetIcon(@ScriptDir & "\favicon.ico")
 
 	TraySetToolTip($title)
 
 	While 1
 		Switch TrayGetMsg()
+
 			Case $idAction1
-				MsgBox($MB_ICONINFORMATION, "Action 1 - Titre", "Cle 3 - Section 3 = '" & _myIniRead($section3, $cle3) & "'")
+				_myMessage('Bienvenue dans votre icone de barre des taches')
 
-			Case $idAction2
-				_myMessage("Action 2"& @CRLF _
-							& "Cle 1 - Section 1 = '" & _myIniRead($section1, $cle1) & "'" & @CRLF _
-							& "Cle 1 - Section 2 = '" & _myIniRead($section2, $cle1) & "'")
-
+			; Exemples Basiques
 			Case $idM1Action1
-				ClipPut(fonction1())
+				ShellExecute(@ScriptDir & "\Tuto" & "\Hello_World.au3")
 
 			Case $idM1Action2
-				$value = InputBox("Modification de valeur", "Entrez la nouvelle valeur de la " & $cle3 & " contenue dans la " & $section3 , _myIniRead($section3, $cle3)))
-				If @error <> 0 Then
-					_myIniWrite($section3, $cle3, $value)
-				EndIf
+				ShellExecute(@ScriptDir & "\Tuto" & "\Hello_World_++.au3")
 
 			Case $idM1Action3
-				TrayTip($title, 'Bienvenue dans votre icone de barre des taches', 10, 1)
+				ShellExecute(@ScriptDir & "\Tuto" & "\Hello_World_++++.au3")
+
+			; Exemples Avancés
+			Case $idM2Action1
+				ShellExecute(@ScriptDir & "\Tuto" & "\Redimensionner_image_excel.au3")
+
+			Case $idM2Action2
+				ShellExecute(@ScriptDir & "\Tuto" & "\Nouvelle_IA.au3")
 
 		EndSwitch
 
 		Sleep(10)
 	WEnd
 EndFunc
+
